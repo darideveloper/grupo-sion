@@ -9,20 +9,20 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Setup .env file
 load_dotenv()
-ENV = os.getenv('ENV')
-env_path = os.path.join(BASE_DIR, f'.env.{ENV}')
+ENV = os.getenv("ENV")
+env_path = os.path.join(BASE_DIR, f".env.{ENV}")
 load_dotenv(env_path)
-print(f'\nEnvironment: {ENV}')
+print(f"\nEnvironment: {ENV}")
 
 # Env variables
-SECRET_KEY = os.getenv('SECRET_KEY')
-DEBUG = os.getenv('DEBUG', 'False') == 'True'
+SECRET_KEY = os.getenv("SECRET_KEY")
+DEBUG = os.getenv("DEBUG", "False") == "True"
 STORAGE_AWS = os.environ.get("STORAGE_AWS") == "True"
-HOST = os.getenv('HOST')
-TEST_HEADLESS = os.getenv('TEST_HEADLESS', 'False') == 'True'
-EXTRA_HOUR_RATE = float(os.getenv('EXTRA_HOUR_RATE', 0))
-PENALTY_NO_ATTENDANCE = float(os.getenv('PENALTY_NO_ATTENDANCE', 0))
-LOCALE_VALUE = os.getenv('LOCALE_VALUE')
+HOST = os.getenv("HOST")
+TEST_HEADLESS = os.getenv("TEST_HEADLESS", "False") == "True"
+EXTRA_HOUR_RATE = float(os.getenv("EXTRA_HOUR_RATE", 0))
+PENALTY_NO_ATTENDANCE = float(os.getenv("PENALTY_NO_ATTENDANCE", 0))
+LOCALE_VALUE = os.getenv("LOCALE_VALUE")
 
 print(f"DEBUG: {DEBUG}")
 print(f"STORAGE_AWS: {STORAGE_AWS}")
@@ -34,68 +34,66 @@ ALLOWED_HOSTS = ["*"]
 
 INSTALLED_APPS = [
     # Custom apps
-    'core',
-    'employees',
-    'services',
-    'assistance',
-    'inventory',
-    'accounting',
-    
+    "core",
+    "employees",
+    "services",
+    "assistance",
+    "inventory",
+    "accounting",
     # Template admin
-    'jazzmin',
-    
+    "jazzmin",
     # Django apps
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'whitenoise.runserver_nostatic',
-    'django.contrib.staticfiles',
+    "django.contrib.admin",
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    "django.contrib.messages",
+    "whitenoise.runserver_nostatic",
+    "django.contrib.staticfiles",
 ]
 
 MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
+    "django.middleware.security.SecurityMiddleware",
+    "django.contrib.sessions.middleware.SessionMiddleware",
     # Manage static files
-    'whitenoise.middleware.WhiteNoiseMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "whitenoise.middleware.WhiteNoiseMiddleware",
+    "django.middleware.common.CommonMiddleware",
+    "django.middleware.csrf.CsrfViewMiddleware",
+    "django.contrib.auth.middleware.AuthenticationMiddleware",
+    "django.contrib.messages.middleware.MessageMiddleware",
+    "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-ROOT_URLCONF = 'project.urls'
+ROOT_URLCONF = "project.urls"
 
 TEMPLATES = [
     {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
+        "BACKEND": "django.template.backends.django.DjangoTemplates",
+        "DIRS": [],
+        "APP_DIRS": True,
+        "OPTIONS": {
+            "context_processors": [
+                "django.template.context_processors.debug",
+                "django.template.context_processors.request",
+                "django.contrib.auth.context_processors.auth",
+                "django.contrib.messages.context_processors.messages",
             ],
         },
     },
 ]
 
-WSGI_APPLICATION = 'project.wsgi.application'
+WSGI_APPLICATION = "project.wsgi.application"
 
 
 # Database
 # Setup database for testing and production
-IS_TESTING = len(sys.argv) > 1 and sys.argv[1] == 'test'
+IS_TESTING = len(sys.argv) > 1 and sys.argv[1] == "test"
 
 if IS_TESTING:
     DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': os.path.join(BASE_DIR, 'testing.sqlite3'),
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": os.path.join(BASE_DIR, "testing.sqlite3"),
         }
     }
 else:
@@ -103,19 +101,19 @@ else:
     options = {}
     if os.environ.get("DB_ENGINE") == "django.db.backends.mysql":
         options = {
-            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
-            'charset': 'utf8mb4',
+            "init_command": "SET sql_mode='STRICT_TRANS_TABLES'",
+            "charset": "utf8mb4",
         }
 
     DATABASES = {
-        'default': {
-            'ENGINE': os.environ.get("DB_ENGINE"),
-            'NAME': os.environ.get("DB_NAME"),
-            'USER': os.environ.get("DB_USER"),
-            'PASSWORD': os.environ.get("DB_PASSWORD"),
-            'HOST': os.environ.get("DB_HOST"),
-            'PORT': os.environ.get("DB_PORT"),
-            'OPTIONS': options,
+        "default": {
+            "ENGINE": os.environ.get("DB_ENGINE"),
+            "NAME": os.environ.get("DB_NAME"),
+            "USER": os.environ.get("DB_USER"),
+            "PASSWORD": os.environ.get("DB_PASSWORD"),
+            "HOST": os.environ.get("DB_HOST"),
+            "PORT": os.environ.get("DB_PORT"),
+            "OPTIONS": options,
         }
     }
 
@@ -124,17 +122,17 @@ else:
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation'
-                '.UserAttributeSimilarityValidator',
+        "NAME": "django.contrib.auth.password_validation"
+        ".UserAttributeSimilarityValidator",
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        "NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
     },
 ]
 
@@ -143,9 +141,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
 # Setup language and time zone
-LANGUAGE_CODE = 'es-mx'
+LANGUAGE_CODE = "es-mx"
 locale.setlocale(locale.LC_TIME, LOCALE_VALUE)
-TIME_ZONE = 'America/Mexico_City'
+TIME_ZONE = "America/Mexico_City"
 
 USE_I18N = True
 
@@ -155,12 +153,12 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = "static/"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # Jazzmin (layout template) settings
 JAZZMIN_SETTINGS = {
@@ -170,53 +168,41 @@ JAZZMIN_SETTINGS = {
     "site_brand": "Grupo SION",
     "welcome_sign": "Bienvenido a Grupo SION Dashboard",
     "copyright": "",
-
     # Media
     "site_logo": "core/imgs/logo.webp",
     "login_logo": "core/imgs/logo.webp",
     "login_logo_dark": "core/imgs/logo.webp",
     "site_logo_classes": "img-circle",
     "site_icon": "core/imgs/favicon.ico",
-    
     # Search model in header
     "search_model": [],
-
     # Field name on user model that contains avatar
     # ImageField/URLField/Charfield or a callable that receives the user
     "user_avatar": None,
-
     ############
     # Top Menu #
     ############
-
     # Links to put along the top menu
     "topmenu_links": [
         # {"name": "Landing", "url": LANDING_HOST},
     ],
-
     #############
     # User Menu #
     #############
-
     # Additional links to include in the user menu on the top right
     # ("app" url type is not allowed)
     "usermenu_links": [
         # {"model": "auth.user"}
     ],
-
     #############
     # Side Menu #
     #############
-
     # Whether to display the side menu
     "show_sidebar": True,
-
     # Whether to aut expand the menu
     "navigation_expanded": True,
-
     # Hide these apps when generating side menu e.g (auth)
     "hide_apps": [],
-
     # Hide these models when generating side menu (e.g auth.user)
     "hide_models": [
         "employees.Neighborhood",
@@ -226,11 +212,9 @@ JAZZMIN_SETTINGS = {
         "employees.Bank",
         "employees.Relationship",
     ],
-
     # List of apps (and/or models) to base side menu ordering off of
     # (does not need to contain all apps/models)
     "order_with_respect_to": [],
-
     # Custom links to append to app groups, keyed on app name
     "custom_links": {
         # "books": [{
@@ -240,7 +224,6 @@ JAZZMIN_SETTINGS = {
         #     "permissions": ["books.view_book"]
         # }]
     },
-
     # Custom icons for side menu apps/models
     # See https://fontawesome.com/icons?d=gallery&m=free
     # for the full list of 5.13.0 free icon classes
@@ -248,38 +231,31 @@ JAZZMIN_SETTINGS = {
         "auth": "fas fa-users-cog",
         "auth.user": "fas fa-user",
         "auth.Group": "fas fa-users",
-        
         "employees.Employee": "fas fa-users",
         "employees.Loan": "fas fa-money-bill",
         "employees.Ref": "fas fa-people-arrows",
         "employees.Relative": "fas fa-user-friends",
-        
         "services.Agreement": "fas fa-handshake",
         "services.Service": "fas fa-briefcase",
         "services.Schedule": "fas fa-calendar-alt",
-        
         "assistance.Assistance": "fas fa-calendar-check",
         "assistance.WeeklyAssistance": "fas fa-calendar-week",
         "assistance.ExtraPaymentCategory": "fas fa-file",
         "assistance.ExtraPayment": "fas fa-file-invoice-dollar",
-        
         "inventory.Item": "fas fa-box",
         "inventory.ItemTransaction": "fas fa-exchange-alt",
         "inventory.ItemLoan": "fas fa-hand-holding-usd",
-     
         "accounting.Payroll": "fas fa-solid fa-wallet",
         "accounting.PayrollSummary": "fas fa-money-check-alt",
     },
     # Icons that are used when one is not manually specified
     "default_icon_parents": "fas fa-chevron-circle-right",
     "default_icon_children": "fas fa-circle",
-
     #################
     # Related Modal #
     #################
     # Use modals instead of popups
     "related_modal_active": False,
-
     #############
     # UI Tweaks #
     #############
@@ -291,7 +267,6 @@ JAZZMIN_SETTINGS = {
     "use_google_fonts_cdn": True,
     # Whether to show the UI customizer on the sidebar
     "show_ui_builder": False,
-
     ###############
     # Change view #
     ###############
@@ -305,7 +280,7 @@ JAZZMIN_SETTINGS = {
     # override change forms on a per modeladmin basis
     "changeform_format_overrides": {
         "auth.user": "collapsible",
-        "auth.group": "vertical_tabs"
+        "auth.group": "vertical_tabs",
     },
 }
 
@@ -351,43 +326,48 @@ CORS_ALLOWED_ORIGINS = [
 
 CSRF_TRUSTED_ORIGINS = CORS_ALLOWED_ORIGINS
 
+
 # Storage settings
+STATIC_URL = "/static/"
+MEDIA_URL = "/media/"
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+
 if STORAGE_AWS:
-    # aws settings
-    AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
-    AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
-    AWS_STORAGE_BUCKET_NAME = os.getenv('AWS_STORAGE_BUCKET_NAME')
+    # 1. Credentials
+    AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID")
+    AWS_SECRET_ACCESS_KEY = os.getenv("AWS_SECRET_ACCESS_KEY")
+    AWS_STORAGE_BUCKET_NAME = os.getenv("AWS_STORAGE_BUCKET_NAME")
+
+    # 2. Regional Settings
+    # For AWS: Usually None or s3.region.amazonaws.com
+    # For DigitalOcean Spaces: https://region.digitaloceanspaces.com
+    AWS_S3_ENDPOINT_URL = os.getenv("AWS_S3_ENDPOINT_URL")
+    AWS_S3_REGION_NAME = os.getenv("AWS_S3_REGION_NAME")
+
+    # 3. Domain/CDN settings
+    # For AWS: bucket.s3.amazonaws.com
+    # For DO: bucket.region.cdn.digitaloceanspaces.com (if using CDN)
+    AWS_S3_CUSTOM_DOMAIN = os.getenv("AWS_S3_CUSTOM_DOMAIN")
+
+    # 4. Folder isolation
+    # Allows multiple projects to share one bucket
+    AWS_PROJECT_FOLDER = os.getenv("AWS_PROJECT_FOLDER")
+
+    # 5. File Locations
+    STATIC_LOCATION = f"{AWS_PROJECT_FOLDER}/static"
+    PUBLIC_MEDIA_LOCATION = f"{AWS_PROJECT_FOLDER}/media"
+    PRIVATE_MEDIA_LOCATION = f"{AWS_PROJECT_FOLDER}/private"
+
+    # 6. Django-Storages Engine Mapping
+    STATICFILES_STORAGE = "project.storage_backends.StaticStorage"
+    DEFAULT_FILE_STORAGE = "project.storage_backends.PublicMediaStorage"
+    PRIVATE_FILE_STORAGE = "project.storage_backends.PrivateMediaStorage"
+
+    # 7. Optimization & Security
+    AWS_S3_OBJECT_PARAMETERS = {"CacheControl": "max-age=86400"}
     AWS_DEFAULT_ACL = None
-    AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
-    AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
 
-    # s3 static settings
-    STATIC_LOCATION = 'static'
-    STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{STATIC_LOCATION}/'
-    STATICFILES_STORAGE = 'project.storage_backends.StaticStorage'
-    # s3 public media settings
-
-    PUBLIC_MEDIA_LOCATION = 'media'
-    MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{PUBLIC_MEDIA_LOCATION}/'
-    DEFAULT_FILE_STORAGE = 'project.storage_backends.PublicMediaStorage'
-
-    # s3 private media settings
-    PRIVATE_MEDIA_LOCATION = 'private'
-    PRIVATE_FILE_STORAGE = 'project.storage_backends.PrivateMediaStorage'
-    
-    # Disable Django's own staticfiles handling in favour of WhiteNoise
-    # for greater consistency between gunicorn and
-    STATIC_ROOT = None
-    MEDIA_ROOT = None
-else:
-    # Local development (Windows or local server)
-    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-    MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-    
-    # Static files (CSS, JavaScript, Images)
-    STATIC_URL = '/static/'
-    MEDIA_URL = '/media/'
-    
 # Global datetime format
 DATE_FORMAT = "d/b/Y"
 TIME_FORMAT = "H:i"
