@@ -319,9 +319,7 @@ LOGGING = {
 
 # Cors
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:8000",
-    "http://127.0.0.1:8000",
-    "https://elite-guard-services.apps.darideveloper.com",
+    origin for origin in os.getenv("CORS_ALLOWED_ORIGINS", "").split(",") if origin
 ]
 
 CSRF_TRUSTED_ORIGINS = CORS_ALLOWED_ORIGINS
